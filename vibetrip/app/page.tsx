@@ -11,24 +11,37 @@ export default function Page() {
     setTrips(saved);
   }, []);
 
+
   return (
-    <main className="min-h-screen bg-gray-50 p-6">
-      
-      {/* TOP BAR */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">🌴 VibeTrip</h1>
+    <main className="min-h-screen relative bg-pink-50 p-6">
 
-        <Link
-          href="/newtrip"
-          className="bg-black text-white px-4 py-2 rounded-xl"
-        >
-          + New Trip
-        </Link>
-      </div>
+      {/* BACKGROUND LOGO LAYER (BEHIND EVERYTHING) */}
+      <img
+        src="/pintriplogo.png"
+        alt="VibeTrip Logo"
+        className="absolute inset-0 m-auto w-80 opacity-60 z-0"
+      />
 
-      {/* TRIPS GRID */}
-      
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* CONTENT LAYER (ABOVE LOGO) */}
+      <div className="relative z-10">
+
+        {/* TOP BAR */}
+        <div className="grid grid-cols-3 items-center mb-8">
+          <div></div>
+          <h1 className="text-2xl font-bold text-center">🌴 PinTrip</h1>
+
+          <div className="flex justify-end">
+            <Link
+              href="/newtrip/location"
+              className="bg-white text-black px-4 py-2 rounded-xl"
+            >
+              + New Trip
+            </Link>
+          </div>
+        </div>
+
+        {/* TRIPS GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {trips.map((trip, i) => (
             <Link key={i} href={`/tripresults/${trip.id}`}>
               <div className="bg-white p-4 rounded-2xl shadow hover:shadow-lg hover:scale-[1.02] transition cursor-pointer">
@@ -56,6 +69,8 @@ export default function Page() {
             </Link>
           ))}
         </div>
+
+      </div>
     </main>
   );
 }
